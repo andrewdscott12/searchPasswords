@@ -7,4 +7,4 @@ Code searches all filesystems on the loca machine that are of type ext, xfs, btr
 
 This tool will generate a lot of false positives, but it's a start.
 
-
+This code is being released as public domain.

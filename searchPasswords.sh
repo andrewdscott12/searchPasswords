@@ -2,9 +2,9 @@
 
 for FILESYSTEM in $(mount | grep -E 'ext|xfs|jfs|btrfs|mmfs' | awk '{print $3}')
 do
-  echo "Filesystem $FILESYSTEM"
-  IFS=$'\n'
-  for i in $(find $FILESYSTEM -xdev -type f \( -iname ! "*.go" -iname ! "*.c" -iname ! "*.html" \) -perm -o+r ! -user root ! -user daemon )
+  echo "### Filesystem $FILESYSTEM"
+  IFS="$(printf '\nx')" && IFS="${IFS%x}"
+  for i in $(find $FILESYSTEM -xdev -type f -perm -o+r  ! -user root ! -name  \*.go ! -name \*.c ! -name \*.h ! -name \*.js ! -name *.py ! -name metadata.json )
   do 
     file $i | grep "ASCII text"  > /dev/null
     if [ $? -eq 0 ]
